@@ -28,7 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
         list.add(new TaskItem("pouet", "lol", "42"));
         list.add(new TaskItem("pouet", "lol", "42"));
-        list.add(new TaskItem("pouet", "lol", Calendar.));
+        list.add(new TaskItem("pouet", "lol", "42"));
+        list.add(new TaskItem("pouet", "lol", "42"));
+        list.add(new TaskItem("pouet", "lol", "42"));
+        list.add(new TaskItem("pouet", "lol", "42"));
+        list.add(new TaskItem("pouet", "lol", "42"));
+        list.add(new TaskItem("pouet", "lol", "42"));
         list.add(new TaskItem("pouet", "lol", "42"));
         list.add(new TaskItem("pouet", "lol", "42"));
         list.add(new TaskItem("pouet", "lol", "42"));
