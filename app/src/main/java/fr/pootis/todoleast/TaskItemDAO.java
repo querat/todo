@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.util.LongSparseArray;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,9 @@ public class TaskItemDAO {
     }
 
     public void deleteTaskItem(TaskItem task) {
+
+        Log.i("TodoList", "deleting a task (id:" + Long.toString(task.getId()) +")");
+
         Long iNeedToDoThisSoICanUse = task.getId();
         _database.delete(_dbHelper.getTableName(), "id = " + iNeedToDoThisSoICanUse.toString(), null);
     }
@@ -51,16 +55,9 @@ public class TaskItemDAO {
         ArrayList<TaskItem> itemsList = new ArrayList<TaskItem>();
         final String[] columns = _dbHelper.getColumnsStringArray();
 
-        // Yay for the sea of null pointers
         Cursor cursor = _database.query(_dbHelper.getTableName(), null, null, null, null, null, null);
         cursor.moveToFirst();
-
-        Log.e("e", "pootis pouet");
-
         while (!cursor.isAfterLast()) {
-
-            Log.e("e",Long.toString(cursor.getLong(0)));
-
             TaskItem task = new TaskItem(
                     cursor.getLong(0)
                     , cursor.getString(1)

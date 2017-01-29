@@ -16,9 +16,10 @@ public class MainActivity extends AppCompatActivity {
     protected static final int DIALOG_ADD_TASK = 0xADD;
 
 
-    ListView _TaskList;
-    Button _AddButton;
-    TaskItemDAO _databaseDAO;
+    private Button _AddButton;
+    private ListView _TaskList;
+    private static ArrayList<TaskItem> _internalTaskList;
+    private static TaskItemDAO _databaseDAO;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -45,26 +46,28 @@ public class MainActivity extends AppCompatActivity {
         _TaskList = (ListView)findViewById(R.id.task_list);
         _AddButton = (Button)findViewById(R.id.addButton);
         _databaseDAO = new TaskItemDAO(getBaseContext());
-
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-        _databaseDAO.createTaskItem(new TaskItem(42, "pouet", "lol", "42"));
-
-        ArrayList<TaskItem> list = _databaseDAO.getAllTaskItems();
-
+        _internalTaskList = _databaseDAO.getAllTaskItems();
         TaskItemAdapter adapter = new TaskItemAdapter(
                 MainActivity.this
-                , list
+                , _internalTaskList
         );
         _TaskList.setAdapter(adapter);
+    }
 
+    public static ArrayList<TaskItem> getInternalTaskList() { return MainActivity._internalTaskList; }
+    public static TaskItemDAO getDatabaseDAO() { return MainActivity._databaseDAO; }
+
+    public static void addTask(TaskItem task) {
+        Long SQLIdOfInsertedTask = _databaseDAO.createTaskItem(task);
+
+        if (SQLIdOfInsertedTask == -1){
+            Log.e("TodoList", "TaskItemDAO.createTaskItem() failed !");
+            return;
         }
+        Log.i("TodoList", "Added a new task ! title(" + task.getTitle() + ")");
+
+        task.setId(SQLIdOfInsertedTask);
+        _internalTaskList.add(task);
+    }
+
 }

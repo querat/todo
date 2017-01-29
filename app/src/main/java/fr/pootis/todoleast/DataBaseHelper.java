@@ -3,6 +3,7 @@ package fr.pootis.todoleast;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by querat_g on 29/01/17.
@@ -17,9 +18,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         super(context, "TodoListDataBase", null, 1);
     }
 
+    @Override
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(
-            "CREATE TABLE " + _tableName + " ("
+            "CREATE TABLE IF NOT EXISTS " + _tableName + " ("
             + "id INTEGER PRIMARY KEY AUTOINCREMENT"
             + ", title TEXT NOT NULL"
             + ", content TEXT NOT NULL"
@@ -28,8 +30,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         );
     }
 
+    @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-        database.execSQL("DROP TABLE IF EXISTS " + _tableName);
+        Log.i("TodoList", "dropping TABLE " + _tableName);
+
+        database.execSQL("DROP TABLE IF EXISTS " + _tableName + ";");
         onCreate(database);
     }
 
