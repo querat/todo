@@ -3,14 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:layout_margin="32dp"
+    >
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="Task"
         android:ems="10"
         android:id="@+id/addTitleTextField"
         />
@@ -19,11 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="Content"
         android:ems="10"
         android:id="@+id/addMessageTextField"
         />
 
+    <!--
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,12 +33,13 @@
         android:ems="10"
         android:id="@+id/addDateTextField"
         />
+    -->
 
     <Button
         android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addTaskCloseButton"
+        android:id="@+id/addTaskConfirmButton"
         />
 
 </LinearLayout>

@@ -1,6 +1,9 @@
 package fr.pootis.todoleast;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
+import android.content.DialogInterface;
+import android.preference.DialogPreference;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,14 +42,9 @@ public class MainActivity extends AppCompatActivity {
         Log.i(Tag, "addButton pressed !");
 
         // TODO: display windowAddTask
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        addTaskDialog dialog = new addTaskDialog();
+        dialog.show(getFragmentManager(), "addTaskDialog");
 
-        builder.setMessage("lol")
-                .setTitle("xD");
-
-        Dialog dialog = builder.create();
-
-        dialog.show();
         return true;
     }
 
