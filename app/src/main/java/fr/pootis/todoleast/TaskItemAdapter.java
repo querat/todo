@@ -1,6 +1,5 @@
 package fr.pootis.todoleast;
 
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -19,7 +18,7 @@ public class TaskItemAdapter extends ArrayAdapter<TaskItem> {
 
     private class TaskItemViewHolder {
         public TextView title;
-        public TextView text;
+        public TextView content;
         public TextView date;
     }
 
@@ -41,7 +40,7 @@ public class TaskItemAdapter extends ArrayAdapter<TaskItem> {
             viewHolder = new TaskItemViewHolder();
 
             viewHolder.title = (TextView)convertView.findViewById(R.id.title);
-            viewHolder.text = (TextView)convertView.findViewById(R.id.text);
+            viewHolder.content = (TextView)convertView.findViewById(R.id.text);
             viewHolder.date = (TextView)convertView.findViewById(R.id.date);
             convertView.setTag(viewHolder);
         }
@@ -49,7 +48,7 @@ public class TaskItemAdapter extends ArrayAdapter<TaskItem> {
         TaskItem taskItem = this.getItem(position);
 
         viewHolder.title.setText(taskItem.getTitle());
-        viewHolder.text.setText(taskItem.getText());
+        viewHolder.content.setText(taskItem.getContent());
         viewHolder.date.setText(taskItem.getDate());
 
         return convertView;

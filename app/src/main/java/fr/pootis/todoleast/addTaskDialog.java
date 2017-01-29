@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * Created by querat_g on 28/01/17.
@@ -17,33 +18,26 @@ import android.view.ViewGroup;
 
 public class addTaskDialog extends DialogFragment {
 
+    protected Button _addTaskConfirmButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
 
-        View rootView = inflater.inflate(R.layout.add_task_dialog, container, false);
+        final View rootView = inflater.inflate(R.layout.add_task_dialog, container, false);
 
         getDialog().setTitle("honk");
 
-        /*
+        _addTaskConfirmButton = (Button)(rootView.findViewById(R.id.addTaskConfirmButton));
+        _addTaskConfirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("TodoList", "_addTaskConfirmButton pressed !");
 
-        getDialog().setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // TODO: add to SQLite
-                        Log.w("addTaskDialog", "Pressed OK");
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // TODO: add to SQLite
-                        Log.w("addTaskDialog", "Pressed OK");
-                    }
-                });
-*/
 
-       /* Dialog dialog = builder.create();
-        dialog.show();*/
+            }
+        });
+
+
         return rootView;
     }
 

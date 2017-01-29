@@ -6,13 +6,16 @@ package fr.pootis.todoleast;
 
 public class TaskItem
 {
+
+    private long id;
     private String title;
-    private String text;
+    private String content;
     private String date;
 
-    public TaskItem(String ttitle, String ttext, String ddate){
+    public TaskItem(long iid, String ttitle, String ccontent, String ddate){
+        this.id = iid;
         this.title = ttitle;
-        this.text = ttext;
+        this.content = ccontent;
         this.date = ddate;
     }
 
@@ -23,11 +26,11 @@ public class TaskItem
         this.title = title;
     }
 
-    public String getText() {
-        return this.text;
+    public String getContent() {
+        return this.content;
     }
-    public void setText(String text) {
-        this.text = text;
+    public void setContent(String ccontent) {
+        this.content = ccontent;
     }
 
     public String getDate() {
@@ -37,6 +40,7 @@ public class TaskItem
         this.date = ddate;
     }
 
-
+    public long getId() { return this.id; }
+    public void setId(long id) { this.id = id; }
 
 }
