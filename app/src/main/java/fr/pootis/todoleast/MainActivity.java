@@ -1,9 +1,9 @@
 package fr.pootis.todoleast;
 
-import android.support.annotation.StringDef;
+import android.app.Dialog;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.MenuItemHoverListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -22,35 +22,31 @@ import java.text.SimpleDateFormat;
 public class MainActivity extends AppCompatActivity {
 
     public static final String Tag = "TodoList";
+
+    protected static final int DIALOG_ADD_TASK = 0xADD;
+
     ListView mTaskList;
     Button mAddButton;
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
-        menu.findItem(R.id.addButton).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Log.i(Tag, "addButton pressed !");
-
-                // TODO: display windowAddTask
-
-                return true;
-            }
-        });
-
-        return true;
-
+        return super.onCreateOptionsMenu(menu);
     }
 
-    public boolean onOptionItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.i(Tag, "addButton pressed !");
 
-        if (item.getItemId() == R.id.addButton) {
-            Log.e(Tag, "addButton pressed !");
+        // TODO: display windowAddTask
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-            return true;
-        }
+        builder.setMessage("lol")
+                .setTitle("xD");
 
+        Dialog dialog = builder.create();
+
+        dialog.show();
         return true;
     }
 
